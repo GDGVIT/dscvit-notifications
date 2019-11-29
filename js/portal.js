@@ -5,7 +5,7 @@ let sendNotificationButton = document.getElementById('send-notification');
 let allowNotification = true;
 
 if(sessionStorage.getItem('DSCNotifAdminLogin') != 'true'){
-    window.location = "/index.html";
+    window.location = "./index.html";
 }
 
 function timeOutNotification(){
@@ -15,6 +15,28 @@ function timeOutNotification(){
         allowNotification = true;
     },30000)
 }
+
+let userDownloadLink = "https://dscrec19.herokuapp.com/notifs/csv?token=" + sessionStorage.getItem('DSCNotifAdminToken');
+
+document.getElementById('usersDetailsDownload').setAttribute('href',userDownloadLink);
+
+fetch('https://dscrec19.herokuapp.com/notifs/past', {
+    method: 'GET',
+    crossDomain: true,
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    }
+})
+    .then(function (response) {
+        if (response.status != 200) {
+            alert('Error Encountered');
+        }
+        return response.json();
+    })
+    .then(function (responseJSON) {
+        document.getElementById('notificationCount').innerHTML = responseJSON.registration_count;
+    })
 
 
 sendNotificationButton.addEventListener('click', function(){

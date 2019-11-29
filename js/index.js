@@ -2,7 +2,7 @@ let portalLogoinButton = document.getElementById('enter-portal');
 let portalLoginParaphraseValue =  document.getElementById('login-text-field');
 
 if(sessionStorage.getItem('DSCNotifAdminLogin') === 'true'){
-    window.location = "/portal.html";
+    window.location = "./portal.html";
 }
 
 portalLogoinButton.addEventListener('click',function(){
