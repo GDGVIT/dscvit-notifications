@@ -7,7 +7,7 @@ if(sessionStorage.getItem('DSCNotifAdminLogin') === 'true'){
 
 portalLogoinButton.addEventListener('click',function(){
     
-    fetch('https://dscrec19.herokuapp.com/login', {
+    fetch('https://dsc-notifs.herokuapp.com/login', {
             method:'POST',
             crossDomain:true,
             headers:{

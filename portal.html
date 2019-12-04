@@ -33,7 +33,7 @@
 
             <div class="download-notification">
 
-                <a download="Details.csv" id="usersDetailsDownload">Download List of Users</a>
+										<a href="https://dscrec19.herokuapp.com/notifs/csv?token=${sessionStorage.getItem('DSCNotifAdminToken')}" download="Details.csv" id="usersDetailsDownload">Download List of Users</a>
 
             </div>
 
@@ -43,7 +43,7 @@
 
             <input type="text" placeholder="Enter Url" id="url-text-field">
 
-            <div class="button" id="send-notification">Send Notification</div>
+						<div class="button" id="send-notification" href=/notifs/csv?token>Send Notification</div>
 
         </div>
 

@@ -20,7 +20,7 @@ let userDownloadLink = "https://dscrec19.herokuapp.com/notifs/csv?token=" + sess
 
 document.getElementById('usersDetailsDownload').setAttribute('href',userDownloadLink);
 
-fetch('https://dscrec19.herokuapp.com/notifs/past', {
+fetch('https://dsc-notifs.herokuapp.com/notifs/past', {
     method: 'GET',
     crossDomain: true,
     headers: {
@@ -43,7 +43,14 @@ sendNotificationButton.addEventListener('click', function(){
     
     if(allowNotification === true){
 
-        fetch('https://dscrec19.herokuapp.com/notifs/send', {
+				let body = {
+            title: notificationTitle.value,
+            body:notificationBody.value,
+            url:notificationUrl.value
+        }
+				console.log(sessionStorage.getItem("DSCNotifAdminToken"))
+				console.log(JSON.stringify(body))
+        fetch('https://dsc-notifs.herokuapp.com/notifs/send', {
         method: 'POST',
         crossDomain: true,
         headers: {
@@ -51,11 +58,7 @@ sendNotificationButton.addEventListener('click', function(){
             'Accept': 'application/json',
             'Authorization': sessionStorage.getItem('DSCNotifAdminToken')
         },
-        body: JSON.stringify({
-            title: notificationTitle.value,
-            body:notificationBody.value,
-            url:notificationUrl.value
-        })
+        body: JSON.stringify(body)
     })
         .then(function (response) {
             if(response.status!=200){
