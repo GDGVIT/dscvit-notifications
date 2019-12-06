@@ -16,7 +16,7 @@ function timeOutNotification(){
     },30000)
 }
 
-let userDownloadLink = "https://dscrec19.herokuapp.com/notifs/csv?token=" + sessionStorage.getItem('DSCNotifAdminToken');
+let userDownloadLink = "https://dsc-notifs.herokuapp.com/notifs/csv?token=" + sessionStorage.getItem('DSCNotifAdminToken');
 
 document.getElementById('usersDetailsDownload').setAttribute('href',userDownloadLink);
 
