@@ -4,6 +4,11 @@ let notificationUrl = document.getElementById('url-text-field');
 let sendNotificationButton = document.getElementById('send-notification');
 let allowNotification = true;
 
+let createlinksButton = document.getElementById('create-links');
+let linksTitle = document.getElementById('title-text-field-links');
+let linksBody = document.getElementById('body-text-field-links');
+let linksUrl = document.getElementById('url-text-field-links');
+
 if(sessionStorage.getItem('DSCNotifAdminLogin') != 'true'){
     window.location = "./index.html";
 }
@@ -39,6 +44,39 @@ fetch('https://dsc-notifs.herokuapp.com/notifs/past', {
     })
 
 
+createlinksButton.addEventListener("click", function(){
+
+				let body = {
+            title: linksTitle.value,
+            body:linksBody.value,
+            url:linksUrl.value
+        }
+				console.log(sessionStorage.getItem("DSCNotifAdminToken"))
+				console.log(JSON.stringify(body))
+        fetch('https://dsc-notifs.herokuapp.com/links/store', {
+        method: 'POST',
+        crossDomain: true,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': sessionStorage.getItem('DSCNotifAdminToken')
+        },
+        body: JSON.stringify(body)
+    })
+        .then(function (response) {
+            if(response.status!=200){
+                alert('Error Encountered');
+            }
+            return response.json();
+        })
+        .then(function (responseJSON) {
+						alert("Link stored")
+            console.log(responseJSON);
+        })
+
+        timeOutNotification();
+
+})
 sendNotificationButton.addEventListener('click', function(){
     
     if(allowNotification === true){
