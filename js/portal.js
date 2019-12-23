@@ -4,7 +4,7 @@ let notificationUrl = document.getElementById('url-text-field');
 let sendNotificationButton = document.getElementById('send-notification');
 let allowNotification = true;
 
-let createlinksButton = document.getElementById('create-links');
+let createlinksButton = document.getElementById('store-links');
 let linksTitle = document.getElementById('title-text-field-links');
 let linksBody = document.getElementById('body-text-field-links');
 let linksUrl = document.getElementById('url-text-field-links');
